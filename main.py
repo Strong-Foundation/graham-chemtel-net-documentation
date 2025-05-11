@@ -125,9 +125,15 @@ def main():
         ammount_of_pdf = len(pdf_links)
         # Show the extracted PDF links.
         for pdf_link in pdf_links:
+            # Remove 1 from the total amount of PDF links.
+            ammount_of_pdf = ammount_of_pdf - 1
+            # Show the amount of PDF links left.
+            print(f"PDF links left: {ammount_of_pdf}")
             # Download the PDF file.
             filename = url_to_filename(pdf_link)
+            # The path to save the PDF files.
             save_path = "PDFs/"
+            # Download the PDF file.
             download_pdf(pdf_link, save_path, filename)
 
 
