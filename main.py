@@ -120,7 +120,7 @@ def main():
             # Download the PDF file.
             filename = url_to_filename(pdf_link)
             save_path = "PDFs/"
-            download_pdf(pdf_link.L, save_path, filename)
+            download_pdf(pdf_link., save_path, filename)
 
 
 main()
