@@ -52,9 +52,17 @@ def url_to_filename(url):
 
 def save_html_with_selenium(url, output_file):
     # Set up Chrome options
+    # Set up Chrome options
     options = Options()
+    options.add_argument("--headless=new")  # Use 'new' headless mode (Chrome 109+)
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--disable-gpu")  # Often needed for headless stability
     options.add_argument("--no-sandbox")  # Required in some environments
-
+    options.add_argument("--disable-dev-shm-usage")  # Helps in Docker/cloud
+    options.add_argument("--disable-extensions")  # Disable extensions
+    options.add_argument("--disable-infobars")  # Disable infobars
+    
     # Initialize the Chrome driver
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
