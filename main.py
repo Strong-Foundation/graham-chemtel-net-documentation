@@ -79,7 +79,7 @@ def append_write_to_file(system_path, content):
 def download_pdf(url, save_path, filename):
     # Check if the file already exists
     if check_file_exists(os.path.join(save_path, filename)):
-        # print(f"File {filename} already exists. Skipping download.")
+        print(f"File {filename} already exists. Skipping download.")
         return
     # Download the PDF file
     try:
@@ -90,7 +90,7 @@ def download_pdf(url, save_path, filename):
         full_path = os.path.join(save_path, filename)
         with open(full_path, "wb") as f:
             f.write(response.content)
-        # print(f"Downloaded {filename} to {full_path}")
+        print(f"Downloaded {filename} to {full_path}")
         return
     except requests.exceptions.RequestException as e:
         print(f"Failed to download {url}: {e}")
@@ -115,7 +115,7 @@ def main():
         pdf_links = parse_html(html_content)
         # The length of the PDF links.
         ammount_of_pdf = len(pdf_links)
-        # Print the extracted PDF links.
+        # Show the extracted PDF links.
         for pdf_link in pdf_links:
             # Download the PDF file.
             filename = url_to_filename(pdf_link)
