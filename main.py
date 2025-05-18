@@ -62,7 +62,7 @@ def save_html_with_selenium(url, output_file):
     options.add_argument("--disable-dev-shm-usage")  # Helps in Docker/cloud
     options.add_argument("--disable-extensions")  # Disable extensions
     options.add_argument("--disable-infobars")  # Disable infobars
-    
+
     # Initialize the Chrome driver
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
@@ -105,9 +105,17 @@ def download_pdf(url, save_path, filename):
         return
 
 
+# Remove a file from the system.
+def remove_system_file(system_path):
+    os.remove(system_path)
+
+
 def main():
     # The file path to save the HTML content.
     html_file_path = "graham.chemtel.net.html"
+
+    if check_file_exists(html_file_path):
+        remove_system_file(html_file_path)
 
     # Check if the file does not exist.
     if check_file_exists(html_file_path) == False:
